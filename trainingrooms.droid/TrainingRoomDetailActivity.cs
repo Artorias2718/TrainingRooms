@@ -20,6 +20,15 @@ namespace trainingrooms.droid
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+            SetContentView(Resource.Layout.TrainingRoomDetail);
+
+            int roomId = Intent.GetIntExtra("roomId", 0);
+            var repo = new TrainingRooms.RoomRepository();
+            var room = repo.GetRoom(roomId);
+
+            this.Title = "Room Detail";
+            this.FindViewById<TextView>(Resource.Id.txtName).Text = room.Name;
+            this.FindViewById<TextView>(Resource.Id.txtLocation).Text = room.Location;
         }
     }
 }
